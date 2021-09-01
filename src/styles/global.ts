@@ -7,12 +7,13 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
 
-    html, border-style, #__next {
-        background: linear-gradient(90deg, white 50%, red 50%);
+    html, body, #__next {
+        background: #3c5aa6;
         color: black;
         display: flex;
         flex-direction: column;
         align-items: center;
         height: 100%;
+        width: 100%;
     }
 `;
