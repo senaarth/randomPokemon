@@ -1,18 +1,24 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    height: 35rem;
+    margin-top: 2.5rem;
+    height: 20rem;
     width: 100%;
     background-color: white;
     border-radius: 1rem;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    position: relative;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    position: relative !important;
     
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 2rem;
+
+    h3 {
+        margin-bottom: 1rem;
+        color: #3c5aa6;
+    }
 
     div {
         width: 80%;    
@@ -23,7 +29,7 @@ export const Container = styled.div`
 
     div > div {
         position: unset !important;
-        position: relative;
+        position: relative !important;
         height: 100%;
     }
 

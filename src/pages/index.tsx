@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import Head from "next/head";
+import Lottie from "react-lottie";
+import Image from "next/image";
 
 import { PokemonCard } from "../components/PokemonCard";
 
 import api from "../services/api";
 
-import { Main } from "./styles";
+import { Main, Container } from "../styles/home";
+
+import loading from "../assets/loading.json";
+import pokeImg from "../assets/pokemon.png";
 
 interface Pokemon {
   name: string;
@@ -19,17 +24,19 @@ export default function Home() {
 
   React.useEffect(() => {
     async function getPokemon() {
-      try {
-        const { data } = await api.get(`/pokemon/${pokeNumber}`);
+      setIsLoading(true);
+      await api.get(`/pokemon/${pokeNumber}`)
+        .then(({ data }) => {
+          setPokemon({
+            name: data.species.name.toUpperCase(),
+            image: data.sprites.other["official-artwork"].front_default,
+          });
+        })
+        .catch((err) => {
 
-        setPokemon({
-          name: data.species.name.toUpperCase(),
-          image: data.sprites.other["official-artwork"].front_default,
         });
-        setIsLoading(false);
-      } catch {
 
-      }
+      setTimeout(() => setIsLoading(false), 500);
     };
 
     getPokemon();
@@ -49,11 +56,29 @@ export default function Home() {
         <title>PokéRandom</title>
       </Head>
       <Main>
+        <Image
+          src={pokeImg}
+        />
         {
-          !isLoading && (
+          !isLoading ? (
             <PokemonCard
               pokemon={pokemon}
             />
+          ) : (
+            <Container>
+              <Lottie
+                options={{
+                  loop: true,
+                  autoplay: true,
+                  animationData: loading,
+                  rendererSettings: {
+                    preserveAspectRatio: 'xMidYMid slice'
+                  }
+                }}
+                height={150}
+                width={150}
+              />
+            </Container>
           )
         }
         <button

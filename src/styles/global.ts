@@ -8,7 +8,7 @@ export default createGlobalStyle`
     }
 
     html, body, #__next {
-        background: #3c5aa6;
+        background: #8ea6b5;
         color: black;
         display: flex;
         flex-direction: column;
